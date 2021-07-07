@@ -1,0 +1,15 @@
+{
+  "name": "musings-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/musings-sphere/musings-api.git",
+  "author": "Francis Masha <francismasha96@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^16.0.1",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
