@@ -23,6 +23,9 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
+    "types": [
+      "node",
+    ],
     "lib": [
       "es5",
       "es6",
