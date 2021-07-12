@@ -1,15 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // Get unique elements in an array, even if they're complex like nested arrays or objects
-const uniqueElements = (array: unknown[]): unknown[] => {
+const uniqueElements = (array) => {
 	if (array.length <= 1) {
 		return array;
 	}
-
 	// Turn all elements into string, including arrays
 	const stringElements = array.map((key) => JSON.stringify(key));
-
 	// Get the unique elements by using ES6 Set
 	const uniqueElements = [...new Set(stringElements)];
-
 	// Turn the non-string elements back into non-strings
 	return uniqueElements.map((key) => {
 		// If it's an array, this will return the original array
@@ -21,5 +20,5 @@ const uniqueElements = (array: unknown[]): unknown[] => {
 		}
 	});
 };
-
-export default uniqueElements;
+exports.default = uniqueElements;
+//# sourceMappingURL=uniqueElements.js.map
