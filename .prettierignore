@@ -14,3 +14,4 @@ src/assets/mail
 src/certificates
 node_modules
 public
+shared/assets/
