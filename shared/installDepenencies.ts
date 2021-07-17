@@ -7,7 +7,7 @@ const getDirs = (p) =>
 
 // Get a list of all non-build directories in the root folder
 const rootDirs: string[] = getDirs(join(__dirname, "..")).filter(
-	(dir) => dir.indexOf("build") === -1,
+	(dir) => dir.indexOf("build") === -1
 );
 
 // Filter them by directories that have package.json
@@ -26,7 +26,7 @@ const installDeps = (dir, callback): void => {
 	const stream = spawn(
 		process.platform === "win32" ? "yarn.cmd" : "yarn",
 		["install", "--no-progress", "--non-interactive"],
-		{ cwd: join(__dirname, "..", dir), stdio: "inherit" },
+		{ cwd: join(__dirname, "..", dir), stdio: "inherit" }
 	);
 
 	stream.on("close", (code) => callback());

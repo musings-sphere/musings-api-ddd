@@ -2,10 +2,11 @@
 
 ## musings-api
 
-![CI](https://github.com/musings-sphere/musings-api/workflows/CI/badge.svg)
+[![CI](https://github.com/musings-sphere/musings-api/actions/workflows/ci.yml/badge.svg)](https://github.com/musings-sphere/musings-api/actions/workflows/ci.yml)
 [![CircleCI](https://circleci.com/gh/musings-sphere/musings-api/tree/develop.svg?style=svg)](https://circleci.com/gh/musings-sphere/musings-api/tree/develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/99240d9e65963bd620bf/maintainability)](https://codeclimate.com/github/musings-sphere/musings-api/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/99240d9e65963bd620bf/test_coverage)](https://codeclimate.com/github/musings-sphere/musings-api/test_coverage)
+[![CodeQL](https://github.com/musings-sphere/musings-api/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/musings-sphere/musings-api/actions/workflows/codeql-analysis.yml)
 
 </div>
 

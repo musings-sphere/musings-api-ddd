@@ -1,8 +1,9 @@
 defaults: &defaults
   docker:
     - image: cimg/node:14.17.3
-  working_directory: ~/musings-api
+  working_directory: ~/musings
 
+# Aliases
 cmd_download_cc_test_reporter: &cmd_download_cc_test_reporter
   run:
     name: Install code climate test reporter
@@ -10,8 +11,11 @@ cmd_download_cc_test_reporter: &cmd_download_cc_test_reporter
       mkdir -p tmp/
       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > /tmp/cc-test-reporter
       chmod +x /tmp/cc-test-reporter
-
 cmd_attach_workspace: &cmd_attach_workspace
+  attach_workspace:
+    at: ~/musings
+
+cmd_attach_cc_workspace: &cmd_attach_cc_workspace
   attach_workspace:
     at: tmp/
 
@@ -39,15 +43,14 @@ jobs:
     steps:
       - checkout
       - node/install-packages:
-          pkg-manager: yarn
+          pkg-manager: yarn-berry
       - snyk/scan
+      - *persist_to_workspace
 
   test_and_report:
     <<: *defaults
     steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: yarn
+      - *cmd_attach_workspace
       - *cmd_download_cc_test_reporter
       - run:
           name: Run tests
@@ -67,9 +70,10 @@ jobs:
     <<: *defaults
     steps:
       - *cmd_attach_workspace
-      - node/install-packages:
-          pkg-manager: yarn
-      - run: yarn run build
+      - run:
+          name: Run build
+          command: |
+            yarn run build
       - *persist_to_workspace
 
   upload_coverage:
@@ -77,7 +81,7 @@ jobs:
     steps:
       - checkout
       - *cmd_download_cc_test_reporter
-      - *cmd_attach_workspace
+      - *cmd_attach_cc_workspace
       - run:
           name: Upload coverage results to code climate
           command: |
@@ -90,6 +94,7 @@ jobs:
       - image: cimg/node:14.17.3
     steps:
       - checkout
+      - *cmd_attach_workspace
       - setup_remote_docker:
           docker_layer_caching: false
       - run:
@@ -128,8 +133,8 @@ workflows:
           requires:
             - checkout_code
             - test_and_report
-          <<: *filters
+      #          <<: *filters
       - build_push_image:
           requires:
-            - test_and_report
-          <<: *filters
+            - build_artifacts
+#          <<: *filters

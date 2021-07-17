@@ -115,4 +115,13 @@ dist
 # parcel-bundler cache (https://parceljs.org/)
 .idea/*
 .idea/dictionaries/masha.xml
+*/.idea/
 
+.yarn
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+build
