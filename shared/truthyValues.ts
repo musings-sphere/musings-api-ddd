@@ -1,5 +1,5 @@
 const getTruthyValuesFromObject = (
-	object: Record<string, unknown>,
+	object: Record<string, unknown>
 ): string[] => {
 	if (!object) {
 		return [];

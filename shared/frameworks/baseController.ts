@@ -15,7 +15,7 @@ export abstract class BaseController {
 	public static jsonResponse(
 		res: Response,
 		code: number,
-		message: string,
+		message: string
 	): Response {
 		return res.status(code).json({ message });
 	}
@@ -43,7 +43,7 @@ export abstract class BaseController {
 		return BaseController.jsonResponse(
 			res,
 			CodeHttp.BAD_REQUEST,
-			message ? message : "Bad request",
+			message ? message : "Bad request"
 		);
 	}
 
@@ -51,7 +51,7 @@ export abstract class BaseController {
 		return BaseController.jsonResponse(
 			res,
 			CodeHttp.UNAUTHORIZED,
-			message ? message : "Unauthorized",
+			message ? message : "Unauthorized"
 		);
 	}
 
@@ -59,7 +59,7 @@ export abstract class BaseController {
 		return BaseController.jsonResponse(
 			res,
 			CodeHttp.NOT_FOUND,
-			message ? message : "Not found",
+			message ? message : "Not found"
 		);
 	}
 
@@ -67,7 +67,7 @@ export abstract class BaseController {
 		return BaseController.jsonResponse(
 			res,
 			CodeHttp.CONFLICT,
-			message ? message : "Conflict",
+			message ? message : "Conflict"
 		);
 	}
 
@@ -79,6 +79,6 @@ export abstract class BaseController {
 
 	protected abstract executeImpl(
 		req: Request,
-		res: Response,
+		res: Response
 	): Promise<void | Response>;
 }

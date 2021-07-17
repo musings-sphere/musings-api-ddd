@@ -14,7 +14,7 @@ export class Result<T> {
 	public get getValue(): T {
 		if (!this.isSuccess) {
 			throw new Error(
-				"Can't get the value of an error result. Use 'errorValue' instead.",
+				"Can't get the value of an error result. Use 'errorValue' instead."
 			);
 		}
 
