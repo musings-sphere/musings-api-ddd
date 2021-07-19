@@ -133,8 +133,8 @@ workflows:
           requires:
             - checkout_code
             - test_and_report
-      #          <<: *filters
+          <<: *filters
       - build_push_image:
           requires:
             - build_artifacts
-#          <<: *filters
+          <<: *filters

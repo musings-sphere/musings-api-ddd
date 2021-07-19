@@ -1,0 +1,11 @@
+{
+	"name": "@musings-api/blog-service",
+	"description": "Microservice to handle blog writing",
+	"author": "Francis Masha",
+	"dependencies": {
+		"express": "^4.17.1"
+	},
+	"devDependencies": {
+		"typescript": "^4.3.5"
+	}
+}
