@@ -1,0 +1,68 @@
+version: "3"
+
+services:
+  app:
+    container_name: app
+    restart: always
+    build: ./
+    env_file: .env
+    expose:
+      - 8080
+    depends_on:
+      - database
+      #          condition: service_healthy
+      - redis
+    networks:
+      - app-network
+
+  database:
+    image: postgres:13.3-alpine
+    container_name: database
+    restart: on-failure
+    expose:
+      - "5432"
+    ports:
+      - "5433:5432"
+    volumes:
+      - musings_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: musings
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+  redis:
+    image: redis:6.0.6-alpine
+    container_name: redis
+    restart: on-failure
+    networks:
+      - app-network
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    restart: on-failure
+    env_file: .env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /etc/ssl:/etc/ssl
+      - /var/run/docker.sock:/tmp/docker.sock
+    depends_on:
+      - app
+    networks:
+      - app-network
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  musings_data:
+    external: true
