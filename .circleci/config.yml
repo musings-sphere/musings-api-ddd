@@ -11,6 +11,7 @@ cmd_download_cc_test_reporter: &cmd_download_cc_test_reporter
       mkdir -p tmp/
       curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > /tmp/cc-test-reporter
       chmod +x /tmp/cc-test-reporter
+
 cmd_attach_workspace: &cmd_attach_workspace
   attach_workspace:
     at: ~/musings
@@ -37,6 +38,7 @@ version: 2.1
 orbs:
   node: circleci/node@4.5.1
   snyk: snyk/snyk@0.0.8
+  nexploit: neuralegion/nexploit@2.0.2
 jobs:
   checkout_code:
     <<: *defaults
@@ -46,6 +48,39 @@ jobs:
           pkg-manager: yarn-berry
       - snyk/scan
       - *persist_to_workspace
+
+  scan_with_nextploit:
+    <<: *defaults
+    steps:
+      #      - checkout
+      #      - run:
+      #          name: Install nextploit package
+      #          command: |
+      #            sudo npm install @neuralegion/nexploit-cli -g --unsafe-perm=true || true
+      - run:
+          name: Starting nexploit scan
+          command: >
+            echo export SCAN_ID=$(nexploit-cli scan:run --token $NEXPLOIT_TOKEN
+            --name "BC Scan from CircleCI"
+            --crawler https://brokencrystals.com/
+            --smart) >> "$BASH_ENV"
+      - run:
+          name: Get the output scan url
+          command: |
+            printf "Scan was started with ID https://nexploit.app/scans/${SCAN_ID}"
+      - run:
+          name: Waiting for issues
+          command: >
+            (nexploit-cli scan:polling
+            --interval 30s
+            --timeout 20m
+            --token $NEXPLOIT_TOKEN
+            --breakpoint medium_issue ${SCAN_ID})
+      - run:
+          name: Stop Scan
+          when: on_fail
+          command: |
+            nexploit-cli scan:stop --token $NEXPLOIT_TOKEN ${SCAN_ID}
 
   test_and_report:
     <<: *defaults
@@ -123,6 +158,7 @@ workflows:
   check_build_deploy:
     jobs:
       - checkout_code
+      #      - scan_with_nextploit
       - test_and_report:
           requires:
             - checkout_code

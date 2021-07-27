@@ -18,8 +18,3 @@ build
 **/build
 Dockerfile
 LICENSE
-*.sh
-
-# Ignore artifacts:
-build
-coverage

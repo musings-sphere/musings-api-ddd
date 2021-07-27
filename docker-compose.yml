@@ -16,24 +16,21 @@ services:
       - app-network
 
   database:
-    image: postgres:13.3-alpine
+    image: mongo:4.4.2-bionic
     container_name: database
-    restart: on-failure
-    expose:
-      - "5432"
-    ports:
-      - "5433:5432"
-    volumes:
-      - musings_data:/var/lib/postgresql/data
+    restart: always
+    env_file: .env
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: musings
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 10s
-      retries: 5
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - musings_data:/data/db
+    networks:
+      - app-network
+    ports:
+      - "27017:27017"
+    expose:
+      - 27017
 
   redis:
     image: redis:6.0.6-alpine
@@ -42,22 +39,22 @@ services:
     networks:
       - app-network
 
-  nginx:
-    container_name: nginx
-    build: ./nginx
-    restart: on-failure
-    env_file: .env
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - /etc/ssl:/etc/ssl
-      - /var/run/docker.sock:/tmp/docker.sock
-    depends_on:
-      - app
-    networks:
-      - app-network
-    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+#  nginx:
+#    container_name: nginx
+#    build: ./nginx
+#    restart: on-failure
+#    env_file: .env
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    volumes:
+#      - /etc/ssl:/etc/ssl
+#      - /var/run/docker.sock:/tmp/docker.sock
+#    depends_on:
+#      - app
+#    networks:
+#      - app-network
+#    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
 
 networks:
   app-network:

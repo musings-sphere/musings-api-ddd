@@ -25,7 +25,7 @@ const workerDirs: string[] = rootDirs.filter((dir) => {
 const installDeps = (dir, callback): void => {
 	const stream = spawn(
 		process.platform === "win32" ? "yarn.cmd" : "yarn",
-		["install", "--no-progress", "--non-interactive"],
+		["install"],
 		{ cwd: join(__dirname, "..", dir), stdio: "inherit" }
 	);
 
