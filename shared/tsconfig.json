@@ -41,6 +41,6 @@
 			"esnext.asynciterable"
 		]
 	},
-	"include": ["src/*.ts", "src/**/*.ts", "shared/**/*.ts"],
-	"exclude": ["node_modules", "shared/test/*.ts", "shared/test/**/*.ts"]
+	"include": ["**/*.ts"],
+	"exclude": ["node_modules", "__test__/*.ts", "__test__/**/*.ts"]
 }

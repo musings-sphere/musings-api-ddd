@@ -2,10 +2,32 @@
 	"name": "@musings-api/blog-service",
 	"description": "Microservice to handle blog writing",
 	"author": "Francis Masha",
+	"main": "src/index.ts",
+	"license": "MIT",
+	"scripts": {
+		"prebuild": "rm -rf ./build",
+		"build": "tsc",
+		"serve": "node build/src/index.js",
+		"start:dev": "NODE_ENV=development nodemon",
+		"start": "NODE_ENV=production yarn run serve"
+	},
 	"dependencies": {
-		"express": "^4.17.1"
+		"awilix": "^4.3.4",
+		"compression": "^1.7.4",
+		"express": "^4.17.1",
+		"helmet": "^4.6.0",
+		"mongodb": "^4.0.1",
+		"reflect-metadata": "^0.1.13",
+		"swagger-ui-express": "^4.1.6"
 	},
 	"devDependencies": {
+		"@types/cors": "^2.8.12",
+		"@types/express": "^4.17.13",
+		"@types/jest": "^26.0.24",
+		"@types/node": "^16.4.5",
+		"dotenv": "^10.0.0",
+		"nodemon": "^2.0.12",
+		"ts-node": "^10.1.0",
 		"typescript": "^4.3.5"
 	}
 }
