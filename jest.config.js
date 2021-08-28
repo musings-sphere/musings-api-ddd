@@ -1,6 +1,5 @@
 module.exports = {
 	verbose: true,
-	roots: ["<rootDir>/shared"],
 	globals: {
 		"ts-jest": {
 			tsconfig: "<rootDir>/tsconfig.json",
@@ -15,12 +14,9 @@ module.exports = {
 	modulePathIgnorePatterns: ["<rootDir>/node_modules"],
 	collectCoverage: true,
 	collectCoverageFrom: [
-		"shared/**/*.ts",
 		"src/**/*.ts",
 		"!src/**/interface.d.ts",
 		"!src/**/*interfaces.d.ts",
-		"!shared/installDependencies.ts",
-		"!shared/types/**/*.ts",
 	],
 	coverageThreshold: {
 		global: {
@@ -31,12 +27,12 @@ module.exports = {
 		},
 	},
 	testEnvironment: "node",
-	setupFilesAfterEnv: ["<rootDir>/shared/testing/setupJest.ts"],
+	setupFilesAfterEnv: ["<rootDir>/src/shared/testing/setupJest.ts"],
 	moduleNameMapper: {
-		//   "^@dataproviders/(.*)$": "<rootDir>/src/dataproviders/$1",
-		//   "^@domain/(.*)$": "<rootDir>/src/domain/$1",
-		//   "^@frameworks/(.*)$": "<rootDir>/src/frameworks/$1",
-		"^@shared/(.*)$": "<rootDir>/shared/$1",
+		"^@dataproviders/(.*)$": "<rootDir>/src/dataproviders/$1",
+		"^@domain/(.*)$": "<rootDir>/src/domain/$1",
+		"^@frameworks/(.*)$": "<rootDir>/src/frameworks/$1",
+		"^@shared/(.*)$": "<rootDir>/src/shared/$1",
 		"^@test/(.*)$": "<rootDir>/test/$1",
 	},
 };

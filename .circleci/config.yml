@@ -31,7 +31,7 @@ filters: &filters
       only:
         - /^(.*?(\bcircleci\b)[^$]*)$/
         - develop
-        - master
+        - main
 
 # The CircleCi Jobs Tree
 version: 2.1
