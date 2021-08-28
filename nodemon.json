@@ -1,9 +1,6 @@
 {
-	"delay": 0,
-	"execMap": {
-		"ts": "node -r ts-node/register"
-	},
-	"events": {
-		"start": "eslint -c ./.eslintrc.js --ext .ts --format stylish 'src/**/*.ts'"
-	}
+	"watch": ["src", ".env"],
+	"ext": "js,ts,json",
+	"ignore": ["src/**/*.spec.ts"],
+	"exec": "ts-node  --transpile-only ./src/index.ts"
 }

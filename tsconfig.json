@@ -13,11 +13,10 @@
 		"noImplicitThis": true,
 		"alwaysStrict": true,
 		"noUnusedLocals": true,
-		"noUnusedParameters": false,
+		"noUnusedParameters": true,
 		"noImplicitReturns": true,
 		"noFallthroughCasesInSwitch": true,
 		"moduleResolution": "node",
-		"baseUrl": ".",
 		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
@@ -25,7 +24,8 @@
 		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,
 		"types": ["node", "jest"],
-		"lib": [
+    "baseUrl": ".",
+    "lib": [
 			"es5",
 			"es6",
 			"dom",
@@ -40,7 +40,10 @@
 			"es2015.symbol.wellknown",
 			"esnext.asynciterable"
 		]
-	},
-	"include": ["src/*.ts", "src/**/*.ts", "shared/**/*.ts"],
-	"exclude": ["node_modules", "shared/test/*.ts", "shared/test/**/*.ts"]
+  },
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules",
+    "src/shared/test/*.ts",
+    "src/shared/test/**/*.ts"
+  ]
 }

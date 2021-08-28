@@ -33,3 +33,9 @@
 - TypeGraphQL
 - TypeORM
 - PostgreSQL
+
+## Project visualization
+
+Here's a large-scale visualization of the repo. As I put more time into the front-end, it may change a little bit.
+
+![Visualization of this repo](./diagram.svg)

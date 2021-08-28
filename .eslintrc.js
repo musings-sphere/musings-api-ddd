@@ -104,7 +104,7 @@ module.exports = {
 			"undefined",
 		],
 		"id-match": "error",
-		"sort-imports": "error",
+		"sort-imports": "off",
 		"max-classes-per-file": ["error", 1],
 		"max-len": [
 			"error",
