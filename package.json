@@ -34,8 +34,13 @@
 		"express": "^4.17.1",
 		"helmet": "^4.6.0",
 		"mongodb": "^4.1.1",
+		"pg": "^8.7.1",
+		"pg-hstore": "^2.3.4",
+		"redis": "^3.1.2",
 		"reflect-metadata": "^0.1.13",
 		"sanitize-html": "^2.4.0",
+		"sequelize": "^6.6.5",
+		"sequelize-cli": "^6.2.0",
 		"swagger-ui-express": "^4.1.6",
 		"uuid": "^8.3.2",
 		"validator": "^13.6.0"
