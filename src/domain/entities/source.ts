@@ -1,5 +1,5 @@
 import { Guard, Result } from "../../shared/domain";
-import { TextUtils } from "../../shared/textUtils";
+import { TextUtils } from "../../shared/utils/textUtils";
 
 export class Source {
 	private readonly ip: string;
