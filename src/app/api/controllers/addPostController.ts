@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AddPost, AddPostRequestDTO } from "../../../domain";
 import { BaseController, CodeHttp } from "../../../shared/frameworks";
-import { TextUtils } from "../../../shared/textUtils";
+import { TextUtils } from "../../../shared/utils/textUtils";
 
 export class AddPostController extends BaseController {
 	private addPost: AddPost;

@@ -88,27 +88,27 @@ export class AppLogger implements LoggerService {
 		});
 	}
 
-	trace(message: string, meta?: any): void {
+	trace(message: string, meta?: unknown): void {
 		this.logger.log("trace", message, meta);
 	}
 
-	debug(message: string, meta?: any): void {
+	debug(message: string, meta?: unknown): void {
 		this.logger.debug(message, meta);
 	}
 
-	log(message: string, meta?: any): void {
+	log(message: string, meta?: unknown): void {
 		this.logger.info(message, meta);
 	}
 
-	warn(message: string, meta?: any): void {
+	warn(message: string, meta?: unknown): void {
 		this.logger.warn(message, meta);
 	}
 
-	error(message: string, meta?: any): void {
+	error(message: string, meta?: unknown): void {
 		this.logger.error(message, meta);
 	}
 
-	fatal(message: string, meta?: any) {
+	fatal(message: string, meta?: unknown) {
 		this.logger.log("fatal", message, meta);
 	}
 	// :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"

@@ -1,5 +1,5 @@
 import * as faker from "faker";
-import { UniqueEntityID } from "../uniqueEntityID";
+import { UniqueEntityID } from "../../domain/uniqueEntityID";
 
 describe("UniqueEntityID ", () => {
 	it("should be false when pass a invalid id in class construction", () => {

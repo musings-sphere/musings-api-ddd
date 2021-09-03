@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { TextUtils } from "../textUtils";
+import { TextUtils } from "../utils/textUtils";
 import { Identifier } from "./identifier";
 
 export class UniqueEntityID extends Identifier<string | number> {
