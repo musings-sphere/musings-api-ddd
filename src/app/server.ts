@@ -5,6 +5,8 @@ import cors from "cors";
 import { Application, default as express } from "express";
 import helmet from "helmet";
 import { config } from "../config";
+import dbInit from "../database/init";
+import { AppLogger } from "../shared/logger";
 import routes from "./api/routes/v1";
 
 type AppConfig = {
@@ -19,6 +21,7 @@ const {
 export class Server {
 	private app: Application;
 	private config: AppConfig;
+	private logger = new AppLogger(Server.name);
 
 	public constructor(config: AppConfig) {
 		this.app = express();
@@ -26,6 +29,7 @@ export class Server {
 	}
 
 	public start(): Application {
+		dbInit().then(() => this.logger.log("Database is healthy."));
 		if (!this.app) {
 			this.app = express();
 		}
@@ -33,9 +37,11 @@ export class Server {
 		this.configApp();
 
 		this.app.listen(this.config.port, () => {
-			console.log(
-				`App listening on port: ${this.config.port} in ${this.config.mode} mode.`
-			);
+			this.logger.log(`
+      ######################################################
+      😎 App listening on port: ${this.config.port} in ${this.config.mode} mode. 😎
+      ######################################################
+    `);
 		});
 
 		return this.app;
