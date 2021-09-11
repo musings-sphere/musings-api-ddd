@@ -50,6 +50,13 @@ interface Config {
 		host: string;
 		dialect: Dialect;
 	};
+	auth: {
+		secret: string;
+		tokenExpiryTime: number;
+		redisServerPort: number;
+		redisServerUrl: string;
+		redisConnectionString: string;
+	};
 	moderator: {
 		key: string;
 		url: string;
@@ -60,7 +67,7 @@ interface Config {
 export const config: Config = {
 	isDev: process.env.NODE_ENV === "development",
 	api: {
-		prefix: "/api",
+		prefix: "/api/v1",
 	},
 	express: {
 		mode: process.env.NODE_ENV ?? "development",
@@ -85,4 +92,11 @@ export const config: Config = {
 		url: process.env.MODERATOR_API_URL as string,
 	},
 	spamUrl: process.env.SPAM_API_URL as string,
+	auth: {
+		secret: process.env.MUSINGS_APP_SECRET,
+		tokenExpiryTime: 300,
+		redisConnectionString: process.env.REDIS_URL,
+		redisServerPort: +process.env.MUSINGS_REDIS_PORT || 6379,
+		redisServerUrl: process.env.MUSINGS_REDIS_URL,
+	},
 };

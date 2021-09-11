@@ -1,3 +1,4 @@
 import Article from "./article";
+import BaseUser from "./baseUser";
 
-export { Article };
+export { Article, BaseUser };

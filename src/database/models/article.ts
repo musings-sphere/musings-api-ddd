@@ -1,7 +1,8 @@
 import { DataTypes, Model, Optional } from "sequelize";
+import { Timestamp } from "../../shared/types/timestamp";
 import sequelizeConnection from "../config";
 
-interface ArticleAttributes {
+interface ArticleAttributes extends Timestamp {
 	id: string;
 	slug: string;
 	title: string;
@@ -10,9 +11,6 @@ interface ArticleAttributes {
 	// category: string[];
 	// tagList: string[];
 	// authorId: string;
-	createdAt?: Date;
-	updatedAt?: Date;
-	deletedAt?: Date;
 }
 
 export interface ArticleInput
