@@ -9,6 +9,7 @@ const sequelizeConnection = new Sequelize(name, username, password, {
 	host,
 	dialect,
 	port: 5432,
+	logging: true,
 });
 
 export default sequelizeConnection;

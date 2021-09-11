@@ -7,7 +7,7 @@ import { createLogger, format, Logger, transports, addColors } from "winston";
 import { config } from "../config";
 import { LoggerService } from "./types/loggerService";
 
-const { combine, timestamp, printf } = format;
+const { combine, timestamp, printf, splat, json, cli } = format;
 
 // ensure log directory exists
 const logDirectory = path.resolve(`${appRoot}`, "logs");
@@ -42,8 +42,8 @@ export class AppLogger implements LoggerService {
 		const formatter = combine(
 			format.label({ label }),
 			timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
-			format.splat(),
-			format.json(),
+			splat(),
+			json(),
 			printf((info) => {
 				const { timestamp, level, message, label, ...meta } = info;
 				return `${timestamp} [${label}] [${level.toUpperCase()}]: ${message} ${
@@ -64,7 +64,7 @@ export class AppLogger implements LoggerService {
 				colorize: false,
 			},
 			console: {
-				format: format.combine(format.cli(), format.splat()),
+				format: combine(cli(), splat()),
 			},
 		};
 
@@ -88,30 +88,30 @@ export class AppLogger implements LoggerService {
 		});
 	}
 
-	trace(message: string, meta?: unknown): void {
+	trace(message: string, meta?: any): void {
 		this.logger.log("trace", message, meta);
 	}
 
-	debug(message: string, meta?: unknown): void {
+	debug(message: string, meta?: any): void {
 		this.logger.debug(message, meta);
 	}
 
-	log(message: string, meta?: unknown): void {
+	log(message: string, meta?: any): void {
 		this.logger.info(message, meta);
 	}
 
-	warn(message: string, meta?: unknown): void {
+	warn(message: string, meta?: any): void {
 		this.logger.warn(message, meta);
 	}
 
-	error(message: string, meta?: unknown): void {
+	error(message: string, meta?: any): void {
 		this.logger.error(message, meta);
 	}
 
-	fatal(message: string, meta?: unknown) {
+	fatal(message: string, meta?: any) {
 		this.logger.log("fatal", message, meta);
 	}
-	// :remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
+	// :remote-address - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"
 	combinedFormat(err: any, req: Request): string {
 		return `${req.ip} - - [${clfDate(new Date())}] \"${req.method} ${
 			req.originalUrl

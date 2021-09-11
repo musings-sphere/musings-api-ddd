@@ -27,15 +27,18 @@ export class Result<T> {
 		Object.freeze(this);
 	}
 
-	public get getValue(): T {
+	public getValue(): T {
 		if (!this.isSuccess) {
-			this.logger.error(JSON.stringify(this.error));
 			throw new Error(
 				"Can't get the value of an error result. Use 'errorValue' instead."
 			);
 		}
 
 		return this._value;
+	}
+
+	public errorValue(): T {
+		return this.error as T;
 	}
 
 	public static ok<U>(value?: U): Result<U> {
@@ -46,7 +49,7 @@ export class Result<T> {
 		return new Result<U>(false, error);
 	}
 
-	public static combine(results: Result<unknown>[]): Result<unknown> {
+	public static combine(results: Result<any>[]): Result<any> {
 		for (let result of results) {
 			if (result.isFailure) return result;
 		}

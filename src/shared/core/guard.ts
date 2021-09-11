@@ -50,7 +50,7 @@ export class Guard {
 	}
 
 	public static againstNullOrUndefined(
-		argument: unknown,
+		argument: any,
 		argumentName: string
 	): IGuardResult {
 		if (argument === null || typeof argument === "undefined") {

@@ -7,7 +7,7 @@ import helmet from "helmet";
 import { config } from "../config";
 import dbInit from "../database/init";
 import { AppLogger } from "../shared/logger";
-import routes from "./api/routes/v1";
+import { v1Router } from "./api/v1";
 
 type AppConfig = {
 	port: number;
@@ -54,6 +54,6 @@ export class Server {
 		app.use(cors());
 		app.use(compression());
 		app.use(helmet());
-		app.use(prefix, routes());
+		app.use(prefix, v1Router);
 	}
 }

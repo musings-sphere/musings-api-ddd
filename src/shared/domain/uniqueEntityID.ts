@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from "uuid";
+import { fancyID } from "../utils/fancyID";
 import { TextUtils } from "../utils/textUtils";
 import { Identifier } from "./identifier";
 
-export class UniqueEntityID extends Identifier<string | number> {
-	public constructor(id?: string | number) {
-		super(id ? id : uuidv4());
+export class UniqueEntityID extends Identifier<string> {
+	public constructor(id?: string) {
+		super(id ? id : (fancyID.generate() as unknown as string));
 	}
 
 	public isValidId(): boolean {
