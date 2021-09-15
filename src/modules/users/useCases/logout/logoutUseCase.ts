@@ -38,7 +38,7 @@ export class LogoutUseCase implements UseCase<LogoutDTO, Promise<Response>> {
 
 			return right(Result.ok<void>());
 		} catch (err) {
-			return left(new AppError.UnexpectedError(err));
+			return left(new AppError.UnexpectedError(err as Error));
 		}
 	}
 }

@@ -1,5 +1,4 @@
-import { fancyID } from "../utils/fancyID";
-import { TextUtils } from "../utils/textUtils";
+import { TextUtils, fancyID } from "../utils";
 import { Identifier } from "./identifier";
 
 export class UniqueEntityID extends Identifier<string> {

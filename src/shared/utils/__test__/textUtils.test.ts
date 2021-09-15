@@ -27,4 +27,9 @@ describe("Text utils", () => {
 		expect(TextUtils.sanitize(totallyInsane)).toEqual("");
 		expect(TextUtils.sanitize(thisIsFine)).toEqual("<p>This is fine</p>");
 	});
+
+	it("should validate an slug hash in isValidSlug()", () => {
+		const invalidSlug = "custom Slug";
+		expect(TextUtils.validateSlug(invalidSlug)).toBeFalsy();
+	});
 });

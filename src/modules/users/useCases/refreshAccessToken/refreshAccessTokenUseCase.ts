@@ -68,7 +68,7 @@ export class RefreshAccessTokenUseCase
 			// return the new access token
 			return right(Result.ok<JWTToken>(accessToken));
 		} catch (err) {
-			return left(new AppError.UnexpectedError(err));
+			return left(new AppError.UnexpectedError(err as Error));
 		}
 	}
 }

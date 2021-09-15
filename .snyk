@@ -1,0 +1,268 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-ANSIREGEX-1583908:
+    - node-gyp > npmlog > gauge > strip-ansi > ansi-regex:
+        reason: Is a none issue at the moment
+        expires: '2021-10-16T16:57:22.693Z'
+      sequelize-cli > cli-color > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.394Z'
+    - node-gyp > npmlog > gauge > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.693Z'
+      node-gyp > npmlog > gauge > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.394Z'
+    - argon2 > @mapbox/node-pre-gyp > npmlog > gauge > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.693Z'
+      node-gyp > npmlog > gauge > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.394Z'
+    - argon2 > @mapbox/node-pre-gyp > npmlog > gauge > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      argon2 > @mapbox/node-pre-gyp > npmlog > gauge > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.394Z'
+    - node-gyp > npmlog > gauge > wide-align > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      argon2 > @mapbox/node-pre-gyp > npmlog > gauge > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.394Z'
+    - argon2 > @mapbox/node-pre-gyp > npmlog > gauge > wide-align > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      node-gyp > npmlog > gauge > wide-align > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.394Z'
+    - sequelize-cli > yargs > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      argon2 > @mapbox/node-pre-gyp > npmlog > gauge > wide-align > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - sequelize-cli > yargs > cliui > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      sequelize-cli > yargs > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - sequelize-cli > yargs > cliui > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      sequelize-cli > yargs > cliui > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - sequelize-cli > yargs > cliui > wrap-ansi > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      sequelize-cli > yargs > cliui > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - sequelize-cli > yargs > cliui > wrap-ansi > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      sequelize-cli > yargs > cliui > wrap-ansi > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - sequelize-cli > yargs > cliui > wrap-ansi > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - sequelize-cli > cli-color > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - node-gyp > npmlog > gauge > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - node-gyp > npmlog > gauge > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - argon2 > @mapbox/node-pre-gyp > npmlog > gauge > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - argon2 > @mapbox/node-pre-gyp > npmlog > gauge > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - node-gyp > npmlog > gauge > wide-align > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - argon2 > @mapbox/node-pre-gyp > npmlog > gauge > wide-align > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - sequelize-cli > yargs > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - sequelize-cli > yargs > cliui > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - sequelize-cli > yargs > cliui > string-width > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - sequelize-cli > yargs > cliui > wrap-ansi > strip-ansi > ansi-regex:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+  SNYK-JS-TAR-1536758:
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.392Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.396Z'
+    - argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.370Z'
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+  SNYK-JS-TAR-1579147:
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.393Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.396Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.396Z'
+    - argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+  SNYK-JS-TAR-1579152:
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.393Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.396Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.396Z'
+    - argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+  SNYK-JS-TAR-1579155:
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.394Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.395Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T16:57:22.694Z'
+      make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.396Z'
+    - node-gyp > make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T19:02:04.396Z'
+    - argon2 > @mapbox/node-pre-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.372Z'
+    - cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - node-gyp > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+    - make-fetch-happen > cacache > tar:
+        reason: None given
+        expires: '2021-10-16T18:58:57.373Z'
+version: v1.22.1
+patch: {}

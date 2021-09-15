@@ -11,7 +11,7 @@ jobs:
   build_and_test:
     strategy:
       matrix:
-        platform: [ubuntu-latest, windows-latest, macOS-latest]
+        platform: [ubuntu-latest, macOS-latest]
         node: ["12", "14"]
       fail-fast: false
     name: node ${{ matrix.node }}/${{ matrix.platform }}

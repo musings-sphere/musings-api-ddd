@@ -24,7 +24,7 @@ export class GetUserByUserName
 
 	public async execute(request: GetUserByUserNameDTO): Promise<Response> {
 		try {
-			const userNameOrError = UserName.create({ name: request.userName });
+			const userNameOrError = UserName.create({ userName: request.userName });
 
 			if (userNameOrError.isFailure) {
 				return left(
@@ -45,7 +45,7 @@ export class GetUserByUserName
 
 			return right(Result.ok<User>(user));
 		} catch (err) {
-			return left(new AppError.UnexpectedError(err));
+			return left(new AppError.UnexpectedError(err as Error));
 		}
 	}
 }
