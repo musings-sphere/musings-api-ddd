@@ -28,11 +28,4 @@ module.exports = {
 	},
 	testEnvironment: "node",
 	setupFilesAfterEnv: ["<rootDir>/src/shared/testing/setupJest.ts"],
-	moduleNameMapper: {
-		"^@dataproviders/(.*)$": "<rootDir>/src/dataproviders/$1",
-		"^@domain/(.*)$": "<rootDir>/src/domain/$1",
-		"^@frameworks/(.*)$": "<rootDir>/src/frameworks/$1",
-		"^@shared/(.*)$": "<rootDir>/src/shared/$1",
-		"^@test/(.*)$": "<rootDir>/test/$1",
-	},
 };

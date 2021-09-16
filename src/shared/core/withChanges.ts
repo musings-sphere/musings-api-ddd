@@ -5,7 +5,7 @@ export interface IWithChanges {
 }
 
 export class Changes<T> {
-	private readonly changes: Result<unknown>[];
+	private readonly changes: Result<T>[];
 
 	constructor() {
 		this.changes = [];
@@ -15,7 +15,7 @@ export class Changes<T> {
 		this.changes.push(result);
 	}
 
-	public getChangeResult(): Result<unknown> {
+	public getChangeResult(): Result<any> {
 		return Result.combine(this.changes);
 	}
 }

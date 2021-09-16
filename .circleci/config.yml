@@ -1,6 +1,6 @@
 defaults: &defaults
   docker:
-    - image: cimg/node:14.17.3
+    - image: cimg/node:16.8.0
   working_directory: ~/musings
 
 # Aliases
@@ -46,7 +46,7 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: yarn-berry
-      - snyk/scan
+#      - snyk/scan
       - *persist_to_workspace
 
   scan_with_nextploit:

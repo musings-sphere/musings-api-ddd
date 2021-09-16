@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { BaseController } from "../../../../app/models";
-import { TextUtils } from "../../../../shared/utils/textUtils";
+import { TextUtils } from "../../../../shared/utils";
 import { DecodedExpressRequest } from "../../http/models/decodedRequest";
 import { CreateUserDTO } from "./createUserDTO";
 import { CreateUserErrors } from "./createUserErrors";

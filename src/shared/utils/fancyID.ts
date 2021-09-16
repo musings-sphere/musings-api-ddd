@@ -23,7 +23,7 @@ export const fancyID: FancyID = {
 	 * Generate
 	 * Generates uid push identifier.
 	 */
-	generate: (function () {
+	generate: (() => {
 		// Timestamp of last push, used to prevent local
 		// collisions if you push twice in one ms.
 		let lastPushTime = 0;

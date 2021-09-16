@@ -1,14 +1,15 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { Timestamp } from "../../shared/types/timestamp";
-import { fancyID } from "../../shared/utils/fancyID";
+import { fancyID } from "../../shared/utils";
 import sequelizeConnection from "../config";
+import { Author } from "./index";
 
 interface BaseUserAttributes extends Timestamp {
 	id: string;
 	userName: string;
 	email: string;
 	password: string;
-	isEmailVerified: boolean;
+	isVerified: boolean;
 	isAdmin: boolean;
 	isDeleted: boolean;
 }
@@ -25,7 +26,7 @@ class BaseUser
 	public userName!: string;
 	public email!: string;
 	public password!: string;
-	public isEmailVerified!: boolean;
+	public isVerified!: boolean;
 	public isAdmin!: boolean;
 	public isDeleted!: boolean;
 
@@ -57,7 +58,7 @@ BaseUser.init(
 			allowNull: true,
 			defaultValue: null,
 		},
-		isEmailVerified: {
+		isVerified: {
 			type: DataTypes.BOOLEAN,
 			allowNull: false,
 			defaultValue: false,
@@ -76,7 +77,13 @@ BaseUser.init(
 	{
 		sequelize: sequelizeConnection,
 		paranoid: true,
+		indexes: [{ unique: true, fields: ["email"] }],
 	}
 );
+
+BaseUser.hasOne(Author, {
+	sourceKey: "id",
+	foreignKey: "userId",
+});
 
 export default BaseUser;

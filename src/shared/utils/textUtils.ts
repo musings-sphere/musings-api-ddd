@@ -39,4 +39,8 @@ export class TextUtils {
 
 		return value;
 	}
+
+	public static validateSlug(slug: string): boolean {
+		return validator.isSlug(slug);
+	}
 }

@@ -1,9 +1,12 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { Timestamp } from "../../shared/types/timestamp";
+import { fancyID } from "../../shared/utils";
 import sequelizeConnection from "../config";
+import { ArticleVote, Author } from "./index";
 
 interface ArticleAttributes extends Timestamp {
 	id: string;
+	authorId: string;
 	slug: string;
 	title: string;
 	description: string;
@@ -23,6 +26,7 @@ class Article
 	implements ArticleAttributes
 {
 	public id!: string;
+	public authorId!: string;
 	public slug!: string;
 	public title!: string;
 	public description!: string;
@@ -37,10 +41,14 @@ class Article
 Article.init(
 	{
 		id: {
-			type: DataTypes.UUID,
-			defaultValue: DataTypes.UUIDV4,
+			type: DataTypes.STRING,
+			defaultValue: fancyID.generate(),
 			allowNull: false,
 			primaryKey: true,
+		},
+		authorId: {
+			type: DataTypes.STRING,
+			allowNull: false,
 		},
 		slug: {
 			type: DataTypes.STRING(300),
@@ -64,5 +72,15 @@ Article.init(
 		paranoid: true,
 	}
 );
+
+Article.belongsTo(Author, {
+	foreignKey: "id",
+	targetKey: "id",
+});
+
+Article.hasMany(ArticleVote, {
+	sourceKey: "id",
+	foreignKey: "articleId",
+});
 
 export default Article;
