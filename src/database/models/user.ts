@@ -1,10 +1,10 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { Timestamp } from "../../shared/types/timestamp";
 import { fancyID } from "../../shared/utils";
-import sequelizeConnection from "../config";
+import sequelize from "../config";
 import { Author } from "./index";
 
-interface BaseUserAttributes extends Timestamp {
+interface UserAttributes extends Timestamp {
 	id: string;
 	userName: string;
 	email: string;
@@ -14,14 +14,11 @@ interface BaseUserAttributes extends Timestamp {
 	isDeleted: boolean;
 }
 
-export interface BaseUserInput extends Optional<BaseUserAttributes, any> {}
+export interface UserInput extends Optional<UserAttributes, "id"> {}
 
-export interface BaseUserOutput extends Required<BaseUserAttributes> {}
+export interface UserOutput extends Required<UserAttributes> {}
 
-class BaseUser
-	extends Model<BaseUserAttributes, BaseUserInput>
-	implements BaseUserAttributes
-{
+class User extends Model<UserAttributes, UserInput> implements UserAttributes {
 	public id!: string;
 	public userName!: string;
 	public email!: string;
@@ -36,7 +33,7 @@ class BaseUser
 	public readonly deletedAt!: Date;
 }
 
-BaseUser.init(
+User.init(
 	{
 		id: {
 			type: DataTypes.STRING,
@@ -75,15 +72,17 @@ BaseUser.init(
 		},
 	},
 	{
-		sequelize: sequelizeConnection,
+		sequelize: sequelize as Sequelize,
+		modelName: "User",
+		tableName: "User",
 		paranoid: true,
 		indexes: [{ unique: true, fields: ["email"] }],
 	}
 );
 
-BaseUser.hasOne(Author, {
+User.hasOne(Author, {
 	sourceKey: "id",
-	foreignKey: "userId",
+	foreignKey: "UserId",
 });
 
-export default BaseUser;
+export default User;

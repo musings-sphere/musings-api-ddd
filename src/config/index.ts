@@ -29,6 +29,10 @@ const dbName = (mode: string): string => {
 
 interface Config {
 	isDev: boolean;
+	cors: {
+		origin: string | boolean;
+		credentials: boolean;
+	};
 	api: {
 		prefix: string;
 	};
@@ -42,6 +46,7 @@ interface Config {
 	};
 	logs: {
 		level: string;
+		format: string;
 	};
 	database: {
 		username: string;
@@ -66,6 +71,10 @@ interface Config {
 
 export const config: Config = {
 	isDev: process.env.NODE_ENV === "development",
+	cors: {
+		origin: process.env.NODE_ENV === "development" ? true : "musings.com",
+		credentials: process.env.NODE_ENV === "development" ? true : true,
+	},
 	api: {
 		prefix: "/api/v1",
 	},
@@ -79,6 +88,7 @@ export const config: Config = {
 	},
 	logs: {
 		level: process.env.LOG_LEVEL || "silly",
+		format: process.env.NODE_ENV === "production" ? "combined" : "dev",
 	},
 	database: {
 		username: process.env.MUSINGS_DB_USER,

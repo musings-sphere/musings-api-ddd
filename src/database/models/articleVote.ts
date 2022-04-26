@@ -1,28 +1,28 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { Timestamp } from "../../shared/types/timestamp";
 import { fancyID } from "../../shared/utils";
-import sequelizeConnection from "../config";
+import sequelize from "../config";
 import { Article, Author } from "./index";
 
 interface ArticleVoteAttributes extends Timestamp {
 	id: string;
-	articleId: string;
-	authorId: string;
+	ArticleId: string;
+	AuthorId: string;
 	type: string;
 }
 
 export interface ArticleVoteInput
 	extends Optional<ArticleVoteAttributes, "id"> {}
 
-export interface ArticleOutput extends Required<ArticleVoteAttributes> {}
+export interface ArticleVoteOutput extends Required<ArticleVoteAttributes> {}
 
 class ArticleVote
 	extends Model<ArticleVoteAttributes, ArticleVoteInput>
 	implements ArticleVoteAttributes
 {
 	public id!: string;
-	public articleId!: string;
-	public authorId!: string;
+	public ArticleId!: string;
+	public AuthorId!: string;
 	public type!: string;
 
 	// timestamps!
@@ -39,7 +39,7 @@ ArticleVote.init(
 			allowNull: false,
 			primaryKey: true,
 		},
-		articleId: {
+		ArticleId: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			references: {
@@ -49,7 +49,7 @@ ArticleVote.init(
 			onDelete: "cascade",
 			onUpdate: "cascade",
 		},
-		authorId: {
+		AuthorId: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			references: {
@@ -65,25 +65,25 @@ ArticleVote.init(
 		},
 	},
 	{
-		sequelize: sequelizeConnection,
+		sequelize,
 		paranoid: true,
 	}
 );
 
-ArticleVote.belongsTo(Author, {
-	foreignKey: {
-		defaultValue: "id",
-		allowNull: false,
-	},
-	targetKey: "authorId",
-	as: "Author",
-});
+// ArticleVote.belongsTo(Author, {
+// 	foreignKey: {
+// 		defaultValue: "id",
+// 		allowNull: false,
+// 	},
+// 	targetKey: "AuthorId",
+// 	as: "Author",
+// });
 
-ArticleVote.belongsTo(Article, {
-	foreignKey: {
-		defaultValue: "id",
-	},
-	as: "Article",
-});
+// ArticleVote.belongsTo(Article, {
+// 	foreignKey: {
+// 		defaultValue: "id",
+// 	},
+// 	as: "Article",
+// });
 
 export default ArticleVote;

@@ -82,9 +82,10 @@ export class AppLogger implements LoggerService {
 		addColors(customLevels.colors);
 	}
 
-	stream(): void {
+	stream() {
 		this.logger.stream({
-			write: (message) => this.logger.log(message),
+			write: (message: string) =>
+				this.logger.info(message.substring(0, message.lastIndexOf("\n"))),
 		});
 	}
 

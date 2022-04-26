@@ -3,4 +3,4 @@ import { config } from "./config";
 
 const app = new Server(config.express);
 
-app.start();
+app.listen();

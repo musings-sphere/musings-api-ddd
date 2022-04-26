@@ -1,12 +1,12 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { Timestamp } from "../../shared/types/timestamp";
 import { fancyID } from "../../shared/utils";
-import sequelizeConnection from "../config";
+import sequelize from "../config";
 import { ArticleVote, Author } from "./index";
 
 interface ArticleAttributes extends Timestamp {
 	id: string;
-	authorId: string;
+	AuthorId: string;
 	slug: string;
 	title: string;
 	description: string;
@@ -26,7 +26,7 @@ class Article
 	implements ArticleAttributes
 {
 	public id!: string;
-	public authorId!: string;
+	public AuthorId!: string;
 	public slug!: string;
 	public title!: string;
 	public description!: string;
@@ -46,13 +46,14 @@ Article.init(
 			allowNull: false,
 			primaryKey: true,
 		},
-		authorId: {
+		AuthorId: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
 		slug: {
 			type: DataTypes.STRING(300),
 			allowNull: false,
+			unique: true,
 		},
 		title: {
 			type: DataTypes.TEXT,
@@ -68,19 +69,22 @@ Article.init(
 		},
 	},
 	{
-		sequelize: sequelizeConnection,
+		sequelize: sequelize as Sequelize,
+		modelName: "Article",
+		tableName: "Article",
+		timestamps: true,
 		paranoid: true,
 	}
 );
 
-Article.belongsTo(Author, {
-	foreignKey: "id",
-	targetKey: "id",
-});
+// Article.belongsTo(Author, {
+// 	foreignKey: "id",
+// 	targetKey: "id",
+// });
 
-Article.hasMany(ArticleVote, {
-	sourceKey: "id",
-	foreignKey: "articleId",
-});
+// Article.hasMany(ArticleVote, {
+// 	sourceKey: "id",
+// 	foreignKey: "ArticleId",
+// });
 
 export default Article;

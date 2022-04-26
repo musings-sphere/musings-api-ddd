@@ -1,14 +1,13 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { Timestamp } from "../../shared/types/timestamp";
 import { fancyID } from "../../shared/utils";
-import sequelizeConnection from "../config";
-
-// import { Article, Author, CommentVote } from "./index";
+import sequelize from "../config";
+import { Article, Author, CommentVote } from "./index";
 
 interface CommentAttributes extends Timestamp {
 	id: string;
-	authorId: string;
-	articleId: string;
+	AuthorId: string;
+	ArticleId: string;
 	parentCommentId: string;
 	text: string;
 	points: number;
@@ -23,8 +22,8 @@ class Comment
 	implements CommentAttributes
 {
 	public id!: string;
-	public authorId!: string;
-	public articleId!: string;
+	public AuthorId!: string;
+	public ArticleId!: string;
 	public parentCommentId!: string;
 	public text!: string;
 	public points!: number;
@@ -43,13 +42,25 @@ Comment.init(
 			allowNull: false,
 			primaryKey: true,
 		},
-		authorId: {
+		AuthorId: {
 			type: DataTypes.STRING(250),
 			allowNull: false,
+			references: {
+				model: "Author",
+				key: "id",
+			},
+			onDelete: "cascade",
+			onUpdate: "cascade",
 		},
-		articleId: {
+		ArticleId: {
 			type: DataTypes.STRING(250),
 			allowNull: false,
+			references: {
+				model: "Article",
+				key: "id",
+			},
+			onDelete: "cascade",
+			onUpdate: "cascade",
 		},
 		parentCommentId: {
 			type: DataTypes.STRING(250),
@@ -65,23 +76,21 @@ Comment.init(
 		},
 	},
 	{
-		sequelize: sequelizeConnection,
+		sequelize,
 		paranoid: true,
 	}
 );
 
-// Comment.belongsTo(Author, {
-//   foreignKey: "id",
-//   targetKey: "authorId",
-//   as: "Author"
-// })
-//
-// Comment.belongsTo(Article, {
-//   foreignKey: "id",
-//   targetKey: "articleId",
-//   as: "Article"
-// })
-//
+Author.belongsToMany(Comment, {
+	through: Comment,
+});
+
+Comment.belongsTo(Article, {
+	foreignKey: "id",
+	targetKey: "id",
+	as: "Article",
+});
+
 // Comment.hasMany(CommentVote, {
 //   foreignKey: "id",
 //   as: "CommentVotes"

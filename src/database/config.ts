@@ -1,15 +1,24 @@
-import { Sequelize } from "sequelize";
+import { Dialect, Sequelize } from "sequelize";
 import { config } from "../config";
+import { AppLogger } from "../shared/logger";
+
+const logger = new AppLogger("Database");
 
 const {
 	database: { name, username, password, dialect, host },
 } = config;
 
-const sequelizeConnection = new Sequelize(name, username, password, {
+const sequelize = new Sequelize(name, username, password, {
 	host,
-	dialect,
+	dialect: dialect as Dialect,
 	port: 5432,
-	logging: true,
+	logQueryParameters: config.isDev,
+	logging: (query, time) => {
+		logger.log(time + "ms" + " " + query);
+	},
+	benchmark: true,
 });
 
-export default sequelizeConnection;
+sequelize.authenticate().catch((e) => logger.error(e));
+
+export default sequelize;

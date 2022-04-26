@@ -1,6 +1,6 @@
-import { BaseUser } from "../../../database/models";
+import { User } from "../../../database/models";
 import { SequelizeUserRepo } from "./implementations/sequelizeUserRepo";
 
-const userRepo = new SequelizeUserRepo(BaseUser);
+const userRepo = new SequelizeUserRepo(User);
 
 export { userRepo };

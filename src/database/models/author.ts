@@ -1,25 +1,22 @@
-import { Association, DataTypes, Model, Optional } from "sequelize";
+import { Association, DataTypes, Model, Optional, Sequelize } from "sequelize";
 import { Timestamp } from "../../shared/types/timestamp";
 import { fancyID } from "../../shared/utils";
-import sequelizeConnection from "../config";
-import { Article, BaseUser } from "./index";
+import sequelize from "../config";
+import { Article, User } from "./index";
 
 interface AuthorAttributes extends Timestamp {
 	id: string;
-	userId: string;
+	UserId: string;
 	reputation: number;
 }
 
-export interface AuthorInput extends Optional<AuthorAttributes, any> {}
+export interface AuthorInput extends Optional<AuthorAttributes, "id"> {}
 
 export interface AuthorOutput extends Required<AuthorAttributes> {}
 
-class Author
-	extends Model<AuthorAttributes, AuthorInput>
-	implements AuthorAttributes
-{
+class Author extends Model<AuthorAttributes> implements AuthorAttributes {
 	public id!: string;
-	public userId!: string;
+	public UserId!: string;
 	public reputation!: number;
 
 	// timestamps!
@@ -40,12 +37,11 @@ Author.init(
 			allowNull: false,
 			primaryKey: true,
 		},
-		userId: {
+		UserId: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			primaryKey: true,
 			references: {
-				model: "BaseUser",
+				model: "User",
 				key: "id",
 			},
 			onDelete: "cascade",
@@ -58,20 +54,22 @@ Author.init(
 		},
 	},
 	{
-		sequelize: sequelizeConnection,
+		sequelize: sequelize as Sequelize,
+		modelName: "Author",
+		tableName: "Author",
 		timestamps: true,
 		paranoid: true,
 	}
 );
 
-Author.belongsTo(BaseUser, {
-	foreignKey: "authorId",
-	targetKey: "id",
-});
+// Author.belongsTo(User, {
+// 	foreignKey: "authorId",
+// 	targetKey: "id",
+// });
 
 Author.hasMany(Article, {
 	sourceKey: "id",
-	foreignKey: "authorId",
+	foreignKey: "AuthorId",
 	// as: "Articles",
 });
 
